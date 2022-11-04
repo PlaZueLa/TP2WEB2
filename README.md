@@ -1,1 +1,1 @@
-endpoint aca
+la url a usar es la siguiente: http://localhost/tp2webapirestfull/api/cars
