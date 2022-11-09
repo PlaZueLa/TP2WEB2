@@ -10,7 +10,7 @@ class CarModel{
 
     public function getAll(){
 
-        $query = $this->db->prepare("SELECT * FROM vehiculos");
+        $query = $this->db->prepare("SELECT vehiculos.*, categorias.nombre as categoria FROM vehiculos JOIN categorias ON vehiculos.id_categoria = categorias.id");
         $query->execute();
 
         $cars = $query->fetchAll(PDO::FETCH_OBJ);
