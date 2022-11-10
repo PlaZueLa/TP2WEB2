@@ -20,9 +20,38 @@ class CarApiController {
         return json_decode($this->data);
     }
 
+   
+    
+
     public function getCars($params = null){
+        // chequea la existencia de sort y order
+        if (isset($_GET['order']) && isset($_GET['sort'])) {
+             // ordena por id
+            if ($_GET['sort'] == "id" || $_GET['sort'] == "ID") {
+                //verifica si es ASC
+                if ($_GET['order'] == "asc" || $_GET['order'] == "ASC") {
+                    $Cars = $this->model->getCarsAscById();
+                    $this->view->response($Cars);
+            }
+            // Sino ordena DESC
+            else if ($_GET['order'] == "desc" || $_GET['order'] == "DESC") {
+                    $Cars = $this->model->getCarsDescById();
+                    $this->view->response($Cars);
+                }
+            }
+            else{
+                $this->view->response("Valor de variables incorrecto", 400);
+            }
+        }
+        //Sino muestra normal
+        if (!isset($_GET['order']) && !isset($_GET['sort'])) {
+
         $Cars = $this->model->getAll();
         $this->view->response($Cars);
+        }
+        else{ (!isset($_GET['order']) && !isset($_GET['sort']));
+            $this->view->response("Error en la consulta", 400);
+        }
     }
 
     public function getCar($params = null){
