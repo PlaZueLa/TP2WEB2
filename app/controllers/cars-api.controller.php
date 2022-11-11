@@ -24,18 +24,19 @@ class CarApiController {
     
 
     public function getCars($params = null){
-        // chequea la existencia de sort y order
-        if (isset($_GET['order']) && isset($_GET['sort'])) {
-             // ordena por id
-            if ($_GET['sort'] == "id" || $_GET['sort'] == "ID") {
-                //verifica si es ASC
-                if ($_GET['order'] == "asc" || $_GET['order'] == "ASC") {
-                    $Cars = $this->model->getCarsAscById();
+       
+        $sort = $_GET['sort'];
+        $order = $_GET['order'];
+
+        if(isset($order) && isset($sort)){
+            if($sort == "id" || $sort == "marca" || $sort == "modelo" || $sort == "fecha_creacion" || $sort == "precio" || $sort == "descripcion" || $sort == "id_categoria" ||
+            $sort == "ID" || $sort == "MARCA" || $sort == "MODELO" || $sort == "FECHA_CREACION" || $sort == "PRECIO" || $sort == "DESCRIPCION" || $sort == "ID_CATEGORIA"){
+                if($order == "asc" || $order == "ASC"){
+                    $Cars = $this->model->getCarsOrganized($sort, $order);
                     $this->view->response($Cars);
-            }
-            // Sino ordena DESC
-            else if ($_GET['order'] == "desc" || $_GET['order'] == "DESC") {
-                    $Cars = $this->model->getCarsDescById();
+                }
+                elseif($order == 'desc' || $order == 'DESC'){
+                    $Cars = $this->model->getCarsOrganized($sort, $order);
                     $this->view->response($Cars);
                 }
             }
@@ -44,12 +45,12 @@ class CarApiController {
             }
         }
         //Sino muestra normal
-        if (!isset($_GET['order']) && !isset($_GET['sort'])) {
+        if (!isset($order) && !isset($sort)) {
 
         $Cars = $this->model->getAll();
         $this->view->response($Cars);
         }
-        else{ (!isset($_GET['order']) && !isset($_GET['sort']));
+        else{ (!isset($order) && !isset($sort));
             $this->view->response("Error en la consulta", 400);
         }
     }
