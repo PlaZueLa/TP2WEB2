@@ -27,15 +27,10 @@ class CarApiController {
        
         $sort = $_GET['sort'];
         $order = $_GET['order'];
-
         if(isset($order) && isset($sort)){
             if($sort == "id" || $sort == "marca" || $sort == "modelo" || $sort == "fecha_creacion" || $sort == "precio" || $sort == "descripcion" || $sort == "id_categoria" ||
             $sort == "ID" || $sort == "MARCA" || $sort == "MODELO" || $sort == "FECHA_CREACION" || $sort == "PRECIO" || $sort == "DESCRIPCION" || $sort == "ID_CATEGORIA"){
-                if($order == "asc" || $order == "ASC"){
-                    $Cars = $this->model->getCarsOrganized($sort, $order);
-                    $this->view->response($Cars);
-                }
-                elseif($order == 'desc' || $order == 'DESC'){
+                if($order == "asc" || $order == "ASC" || $order == 'desc' || $order == 'DESC'){
                     $Cars = $this->model->getCarsOrganized($sort, $order);
                     $this->view->response($Cars);
                 }
@@ -44,16 +39,12 @@ class CarApiController {
                 $this->view->response("Valor de variables incorrecto", 400);
             }
         }
-        //Sino muestra normal
-        if (!isset($order) && !isset($sort)) {
-
+    
+    if (empty($order) &&  empty($sort)){
         $Cars = $this->model->getAll();
         $this->view->response($Cars);
-        }
-        else{ (!isset($order) && !isset($sort));
-            $this->view->response("Error en la consulta", 400);
-        }
     }
+}
 
     public function getCar($params = null){
         $id = $params [':ID'];
