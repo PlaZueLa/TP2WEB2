@@ -20,19 +20,20 @@ class CarApiController {
         return json_decode($this->data);
     }
 
-   // $marca , $modelo , $fecha_creacion, $precio , $descripcion , $id_categoria
+   
     
 
     public function getCars($params = null){
         
-       $attribute = $_GET['sort_by'];
-        $order = $_GET['order'];
+       $attribute = $_GET['sort_by'] ?? null;
+        $order = $_GET['order'] ?? null;
+        $filter = $_GET['filter'] ?? null;
         $message = '';  
         if (isset($attribute) && isset($order)) {
 
             if (($attribute == 'id' || $attribute == 'marca' || $attribute == 'modelo' || $attribute == 'fecha_creacion'
            || $attribute == 'precio' || $attribute == 'descripcion' || $attribute == 'id_categoria') && 
-            ($order == 'asc' || $order == 'desc')) {
+            ($order == 'asc' || $order == 'desc' || $order == 'ASC' || $order == 'DESC')) {
                $Cars = $this->model->getCarsOrganized($attribute, $order);
                $this->view->response($Cars);
             } else {
@@ -41,6 +42,14 @@ class CarApiController {
 
           }
         } 
+        if(isset($filter) && is_numeric($filter)){
+            $Cars = $this->model->filter($filter);
+            $this->view->response($Cars);
+        }
+        elseif ($filter != null){
+            $this->view->response("Valor de categorias incorrecto", 400);
+        }
+        
         else{ 
             $Cars = $this->model->getAll();
             $this->view->response($Cars);
@@ -85,7 +94,21 @@ class CarApiController {
         else{
             $id = $this->model->insert($car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
             $car = $this->model->get($id);
-            $this->view->response($car, 201);
+            $this->view->response("Vehiculo creado", 201);
         }
+    }
+
+    public function updateCar($params = null){
+        $id = $params[':ID'];
+        $car = $this->getData();
+        $car = $this->model->get($id);
+        if($car){
+            $this->model->update($id,$car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
+            $this->view->response("Vehiculo modificado", 200);
+        }
+        else{
+            $this->view->response("Complete los datos", 400);
+        }
+        
     }
 }

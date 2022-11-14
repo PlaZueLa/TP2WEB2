@@ -29,6 +29,16 @@ class CarModel{
         }
     }
 
+    function filter($filter){
+        if($filter != null){
+            $query = $this->db->prepare("SELECT * FROM `vehiculos` WHERE `id_categoria`= $filter");
+            $query->execute();
+
+            $Cars = $query->fetchAll(PDO::FETCH_OBJ);
+            return $Cars;
+        }
+    }
+
    
     
     public function get($id){
@@ -50,5 +60,12 @@ class CarModel{
     function delete($id){
         $query= $this->db->prepare('DELETE FROM vehiculos WHERE id = ? ');
         $query->execute([$id]);
+    }
+
+    public function update($id, $marca , $modelo , $fecha_creacion, $precio , $descripcion , $id_categoria){
+        $query = $this->db->prepare("UPDATE vehiculos SET marca = ?, modelo = ?, fecha_creacion = ?, precio = ?, descripcion = ?, id_categoria = ? WHERE vehiculos.id = ?");
+        $query->execute([$marca,$modelo,$fecha_creacion,$precio,$descripcion,$id_categoria,$id]); 
+        
+
     }
 }

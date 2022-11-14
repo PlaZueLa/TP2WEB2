@@ -1,6 +1,27 @@
+method GET
+ http://localhost/tp2webapirestfull/api/cars 
 
-El endpoint para traer todo sin parametros, realizar un POST o DELETE es:
- http://localhost/tp2webapirestfull/api/cars
+method DELETE
+ http://localhost/tp2webapirestfull/api/cars/id
+
+ PUT :
+ http://localhost/tp2webapirestfull/api/cars/id
+
+
+
+ para POST O PUT el body es: 
+ 
+ 
+    {
+        
+       "marca": " ",
+        "modelo": "",
+        "fecha_creacion": "",
+        "precio": "",
+        "descripcion": " ",
+        "id_categoria": " "
+        
+    }
 
 GET BY ID: 
 http://localhost/tp2webapirestfull/api/cars/id
@@ -10,39 +31,10 @@ Para todos los ordenamientos se puede usar tanto minusculas como mayusculas, ej:
 
 ORDER:
 
-Por id:
-http://localhost/tp2webapirestfull/api/cars?sort=id&order=ASC
 
-http://localhost/tp2webapirestfull/api/cars?sort=id&order=DESC
+http://localhost/tp2webapirestfull/api/cars?sort=campo&order=asc-desc
 
-Por marca:
-http://localhost/tp2webapirestfull/api/cars?sort=marca&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=marca&order=DESC
-
-Por modelo:
-http://localhost/tp2webapirestfull/api/cars?sort=modelo&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=modelo&order=DESC
-
-Por año:
-http://localhost/tp2webapirestfull/api/cars?sort=id&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=id&order=DESC
- 
-Por precio:
-http://localhost/tp2webapirestfull/api/cars?sort=precio&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=precio&order=DESC
-
-Por descripcion:
-http://localhost/tp2webapirestfull/api/cars?sort=descripcion&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=descripcion&order=DESC
-
-Por categoria:
-http://localhost/tp2webapirestfull/api/cars?sort=id_categoria&order=ASC
-
-http://localhost/tp2webapirestfull/api/cars?sort=id_categoria&order=DESC
+FILTER POR CATEGORIA:
+http://localhost/tp2webapirestfull/api/cars?filter=num (1 - 2 - 3)
 
 
