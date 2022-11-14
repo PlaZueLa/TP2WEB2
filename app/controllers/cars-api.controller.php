@@ -25,23 +25,23 @@ class CarApiController {
 
     public function getCars($params = null){
         
-        $attribute = $_GET['sort_by'];
+       $attribute = $_GET['sort_by'];
         $order = $_GET['order'];
         $message = '';  
         if (isset($attribute) && isset($order)) {
 
             if (($attribute == 'id' || $attribute == 'marca' || $attribute == 'modelo' || $attribute == 'fecha_creacion'
-            || $attribute == 'precio' || $attribute == 'descripcion' || $attribute == 'id_categoria') && 
+           || $attribute == 'precio' || $attribute == 'descripcion' || $attribute == 'id_categoria') && 
             ($order == 'asc' || $order == 'desc')) {
-                $Cars = $this->model->getCarsOrganized($attribute, $order);
-                $this->view->response($Cars);
+               $Cars = $this->model->getCarsOrganized($attribute, $order);
+               $this->view->response($Cars);
             } else {
-                $message .= "Atributo no válido en sort_by y/o en order";
-                $this->view->response($message, 400);
+               $message .= "Atributo no válido en sort_by y/o en order";
+               $this->view->response($message, 400);
 
-            }
+          }
         } 
-        else{ (!isset($order) &&  !isset($attribute));
+        else{ 
             $Cars = $this->model->getAll();
             $this->view->response($Cars);
         }
