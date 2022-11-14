@@ -20,31 +20,37 @@ class CarApiController {
         return json_decode($this->data);
     }
 
-   
+   // $marca , $modelo , $fecha_creacion, $precio , $descripcion , $id_categoria
     
 
     public function getCars($params = null){
-       
-        $sort = $_GET['sort'];
+        
+        $attribute = $_GET['sort_by'];
         $order = $_GET['order'];
-        if(isset($order) && isset($sort)){
-            if($sort == "id" || $sort == "marca" || $sort == "modelo" || $sort == "fecha_creacion" || $sort == "precio" || $sort == "descripcion" || $sort == "id_categoria" ||
-            $sort == "ID" || $sort == "MARCA" || $sort == "MODELO" || $sort == "FECHA_CREACION" || $sort == "PRECIO" || $sort == "DESCRIPCION" || $sort == "ID_CATEGORIA"){
-                if($order == "asc" || $order == "ASC" || $order == 'desc' || $order == 'DESC'){
-                    $Cars = $this->model->getCarsOrganized($sort, $order);
-                    $this->view->response($Cars);
-                }
+        $message = '';  
+        if (isset($attribute) && isset($order)) {
+
+            if (($attribute == 'id' || $attribute == 'marca' || $attribute == 'modelo' || $attribute == 'fecha_creacion'
+            || $attribute == 'precio' || $attribute == 'descripcion' || $attribute == 'id_categoria') && 
+            ($order == 'asc' || $order == 'desc')) {
+                $Cars = $this->model->getCarsOrganized($attribute, $order);
+                $this->view->response($Cars);
+            } else {
+                $message .= "Atributo no válido en sort_by y/o en order";
+                $this->view->response($message, 400);
+
             }
-            else{
-                $this->view->response("Valor de variables incorrecto", 400);
-            }
+        } 
+        else{ (!isset($order) &&  !isset($attribute));
+            $Cars = $this->model->getAll();
+            $this->view->response($Cars);
         }
-    
-    if (empty($order) &&  empty($sort)){
-        $Cars = $this->model->getAll();
-        $this->view->response($Cars);
     }
-}
+
+              
+                  
+
+             
 
     public function getCar($params = null){
         $id = $params [':ID'];

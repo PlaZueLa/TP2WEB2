@@ -46,6 +46,3 @@ http://localhost/tp2webapirestfull/api/cars?sort=id_categoria&order=ASC
 http://localhost/tp2webapirestfull/api/cars?sort=id_categoria&order=DESC
 
 
-
-
-

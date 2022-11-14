@@ -19,16 +19,17 @@ class CarModel{
     }
 
 
-    public function getCarsOrganized($sort, $order){
-        if($order != null && $sort != null){
-        $query = $this->db->prepare("SELECT * FROM `vehiculos` ORDER BY $sort $order");
+    public function getCarsOrganized($attribute, $order){
+        if($order != null && $attribute != null){
+        $query = $this->db->prepare("SELECT * FROM `vehiculos` ORDER BY $attribute $order");
         $query->execute();
 
         $Cars = $query->fetchAll(PDO::FETCH_OBJ);
         return $Cars;
         }
-    
     }
+
+   
     
     public function get($id){
         $query = $this->db->prepare("SELECT * FROM vehiculos WHERE id = ?");
