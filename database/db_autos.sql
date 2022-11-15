@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2022 a las 02:49:00
+-- Tiempo de generación: 15-11-2022 a las 17:32:19
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -91,7 +91,11 @@ INSERT INTO `vehiculos` (`id`, `marca`, `modelo`, `fecha_creacion`, `precio`, `d
 (48, 'Toyota', 'Yaris', '2019', 4300000, 'Yaris usado color gris, 30000km, tipo de combustible nafta, 4 puertas, transmisión manual, motor 1.5, dirección eléctrica.', 1),
 (52, 'Toyota', 'Supra', '1994', 55000000, 'Supra usada color naranja, 120000km, tipo de combustible nafta, 4 puertas, transmisión manual, motor 2.3, dirección mecánica.', 1),
 (53, 'Honda', 'Civic', '1996', 41000000, 'Civic usado color negro, 222000km, tipo de combustible nafta, 2 puertas, transmisión manual, motor 2.0, dirección mecánica.', 1),
-(54, 'Nissan', 'Skyline', '2003', 67000000, 'Skyline usado color azul, 20000km, tipo de combustible nafta, 2 puertas, transmisión manual, motor 2.5, dirección mecánica.', 1);
+(54, 'Nissan', 'Skyline', '2003', 67000000, 'Skyline usado color azul, 20000km, tipo de combustible nafta, 2 puertas, transmisión manual, motor 2.5, dirección mecánica.', 1),
+(57, 'Ford', 'Ranger', '2011', 3710000, 'Ranger usada color rojo, 122000km, tipo de combustible nafta/gnc, 4 puertas, transmisión manual, motor 2.3, dirección hidráulica. ', 2),
+(61, 'Ford', 'Mondeo', '2013', 4710000, 'Mondeo usado color blanco, 95000km, tipo de combustible nafta/gnc, 4 puertas, transmisión manual, motor 2.0, dirección hidráulica. ', 1),
+(62, 'Chevrolet', 'Cruze', '2014', 4910000, 'Cruze usado color blanco, 94000km, tipo de combustible nafta/gnc, 4 puertas, transmisión manual, motor 2.0, dirección hidráulica. ', 1),
+(63, 'Audi', 'Q5', '2012', 3710000, 'Q5 usada color negro, 122000km, tipo de combustible nafta/gnc, 4 puertas, transmisión manual, motor 2.3, dirección hidráulica. ', 2);
 
 --
 -- Índices para tablas volcadas
@@ -136,7 +140,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Restricciones para tablas volcadas
