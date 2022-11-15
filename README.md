@@ -35,6 +35,11 @@ ORDER:
 http://localhost/tp2webapirestfull/api/cars?sort=campo&order=asc-desc
 
 FILTER POR CATEGORIA:
+
 http://localhost/tp2webapirestfull/api/cars?filter=num (1 - 2 - 3)
+
+PAGINACION:
+
+http://localhost/tp2webapirestfull/api/cars?limit=NUM&offset=NUM
 
 
