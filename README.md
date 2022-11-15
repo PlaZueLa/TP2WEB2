@@ -1,29 +1,39 @@
-method GET
+method GET:
  http://localhost/tp2webapirestfull/api/cars 
 
-method DELETE
+ method POST:
+ http://localhost/tp2webapirestfull/api/cars
+
+ method PUT :
  http://localhost/tp2webapirestfull/api/cars/id
 
- PUT :
- http://localhost/tp2webapirestfull/api/cars/id
-
-
-
- para POST O PUT el body es: 
+para  PUT el body es: 
  
- 
-    {
+  {
         
-       "marca": " ",
-        "modelo": "",
-        "fecha_creacion": "",
-        "precio": "",
+        "id": ,
+        "marca": " ",
+        "modelo": " ",
+        "fecha_creacion": " b",
+        "precio": ,
         "descripcion": " ",
-        "id_categoria": " "
-        
-    }
+        "id_categoria": 
 
-GET BY ID: 
+        }
+ para POST el body es:
+   {
+        
+        
+        "marca": " ",
+        "modelo": " ",
+        "fecha_creacion": " ",
+        "precio":  ,
+        "descripcion": "  ",
+        "id_categoria": 
+
+        }
+ 
+method GET BY ID: 
 http://localhost/tp2webapirestfull/api/cars/id
 
 
