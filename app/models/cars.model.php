@@ -18,6 +18,17 @@ class CarModel{
         return $Cars;
     }
 
+    public function getAllPag($limit, $offset){
+
+        $query = $this->db->prepare("SELECT * FROM `vehiculos` LIMIT $limit OFFSET $offset;");
+        $query->execute();
+
+        $Cars = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $Cars;
+    }
+
+
 
     public function getCarsOrganized($attribute, $order){
         if($order != null && $attribute != null){
@@ -64,8 +75,6 @@ class CarModel{
 
     public function update($id, $marca , $modelo , $fecha_creacion, $precio , $descripcion , $id_categoria){
         $query = $this->db->prepare("UPDATE vehiculos SET marca = ?, modelo = ?, fecha_creacion = ?, precio = ?, descripcion = ?, id_categoria = ? WHERE vehiculos.id = ?");
-        $query->execute([$marca,$modelo,$fecha_creacion,$precio,$descripcion,$id_categoria,$id]); 
-        
-
+        $query->execute([$marca, $modelo, $fecha_creacion, $precio, $descripcion, $id_categoria, $id]); 
     }
 }

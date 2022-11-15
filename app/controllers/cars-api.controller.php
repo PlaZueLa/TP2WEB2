@@ -28,6 +28,9 @@ class CarApiController {
        $attribute = $_GET['sort_by'] ?? null;
         $order = $_GET['order'] ?? null;
         $filter = $_GET['filter'] ?? null;
+        $limit = $_GET['limit'] ?? null;
+        $offset = $_GET['offset'] ?? null;
+
         $message = '';  
         if (isset($attribute) && isset($order)) {
 
@@ -44,10 +47,20 @@ class CarApiController {
         } 
         if(isset($filter) && is_numeric($filter)){
             $Cars = $this->model->filter($filter);
-            $this->view->response($Cars);
+            if($Cars)
+                $this->view->response($Cars);
+            elseif ($filter != null) {
+                 $this->view->response("Valor de categorias incorrecto", 400);
+            }
         }
-        elseif ($filter != null){
-            $this->view->response("Valor de categorias incorrecto", 400);
+
+        if(!empty($limit) && (!empty($offset) || $offset == 0)){
+         $Cars = $this->model->getAllPag($limit, $offset);
+            if($Cars)
+      $this->view->response($Cars);
+      else 
+           $this->view->response("Valor de paginacion incorrecto", 400);
+      
         }
         
         else{ 
@@ -103,7 +116,7 @@ class CarApiController {
         $car = $this->getData();
         $car = $this->model->get($id);
         if($car){
-            $this->model->update($id,$car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
+            $this->model->update($id, $car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
             $this->view->response("Vehiculo modificado", 200);
         }
         else{
