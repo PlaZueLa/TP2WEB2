@@ -114,9 +114,9 @@ class CarApiController {
     public function updateCar($params = null){
         $id = $params[':ID'];
         $car = $this->getData();
-        $car = $this->model->get($id);
+        
         if($car){
-            $this->model->update($id, $car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
+            $this->model->updateEditCar($car->id, $car->marca, $car->modelo, $car->fecha_creacion, $car->precio, $car->descripcion, $car->id_categoria);
             $this->view->response("Vehiculo modificado", 200);
         }
         else{

@@ -73,8 +73,9 @@ class CarModel{
         $query->execute([$id]);
     }
 
-    public function update($id, $marca , $modelo , $fecha_creacion, $precio , $descripcion , $id_categoria){
+    function updateEditCar($id,$marca,$modelo,$fecha_creacion,$precio,$descripcion,$id_categoria){
         $query = $this->db->prepare("UPDATE vehiculos SET marca = ?, modelo = ?, fecha_creacion = ?, precio = ?, descripcion = ?, id_categoria = ? WHERE vehiculos.id = ?");
-        $query->execute([$marca, $modelo, $fecha_creacion, $precio, $descripcion, $id_categoria, $id]); 
+        $query->execute(array($marca,$modelo,$fecha_creacion,$precio,$descripcion,$id_categoria,$id)); 
+        
     }
 }
